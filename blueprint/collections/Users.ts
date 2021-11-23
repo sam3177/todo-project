@@ -44,10 +44,6 @@ export const Users = collection({
     }),
   ],
   relations: [...shortcuts.relations.blameable(),
-  relation({
-    id:'todos',
-    to:'Todos',
-    isMany: true,
-  })
+  
   ],
 });

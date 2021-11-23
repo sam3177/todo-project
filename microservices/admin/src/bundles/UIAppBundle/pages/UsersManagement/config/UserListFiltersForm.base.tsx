@@ -4,11 +4,7 @@ import { XFormElementType, XList, XForm } from "@bluelibs/x-ui-admin";
 import { Service } from "@bluelibs/core";
 import { IComponents, XRouter, use } from "@bluelibs/x-ui";
 import * as Ant from "antd";
-import {
-  User,
-  UsersCollection,
-  TodosCollection,
-} from "@bundles/UIAppBundle/collections";
+import { User, UsersCollection } from "@bundles/UIAppBundle/collections";
 
 @Service({ transient: true })
 export class UserListFiltersForm extends XForm {
@@ -137,22 +133,6 @@ export class UserListFiltersForm extends XForm {
             <UIComponents.RemoteSelect
               collectionClass={UsersCollection}
               field="fullName"
-              placeholder="Please select an option"
-              mode="multiple"
-            />
-          </Ant.Form.Item>
-        ),
-      },
-
-      {
-        id: "todosIds",
-        label: t("management.users.fields.todos"),
-        name: ["todosIds"],
-        render: (props) => (
-          <Ant.Form.Item {...props}>
-            <UIComponents.RemoteSelect
-              collectionClass={TodosCollection}
-              field="title"
               placeholder="Please select an option"
               mode="multiple"
             />

@@ -7,11 +7,7 @@ import { Routes } from "@bundles/UIAppBundle";
 import { Service, Inject } from "@bluelibs/core";
 import { features } from "./features";
 
-import {
-  User,
-  UsersCollection,
-  TodosCollection,
-} from "@bundles/UIAppBundle/collections";
+import { User, UsersCollection } from "@bundles/UIAppBundle/collections";
 
 @Service({ transient: true })
 export class UserCreateForm extends XForm {
@@ -93,22 +89,6 @@ export class UserCreateForm extends XForm {
             component: Ant.Input,
           },
         ],
-      },
-
-      {
-        id: "todosIds",
-        label: t("management.users.fields.todos"),
-        name: ["todosIds"],
-        required: true,
-        render: (props) => (
-          <Ant.Form.Item {...props}>
-            <UIComponents.RemoteSelect
-              collectionClass={TodosCollection}
-              field="title"
-              mode="multiple"
-            />
-          </Ant.Form.Item>
-        ),
       },
     ]);
   }

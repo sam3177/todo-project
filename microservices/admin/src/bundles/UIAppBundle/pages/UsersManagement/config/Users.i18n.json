@@ -3,7 +3,6 @@
     "management": {
       "users": {
         "fields": {
-          "todosIds": "Todos Ids",
           "updatedById": "Updated By Id",
           "updatedById_description": "Represents the user's id who has made the latest update on this object",
           "createdById": "Created By Id",
@@ -27,8 +26,7 @@
           "createdBy": "Created By",
           "createdBy_description": "Represents the user who has created this object",
           "updatedBy": "Updated By",
-          "updatedBy_description": "Represents the user who has made the latest update on this object",
-          "todos": "Todos"
+          "updatedBy_description": "Represents the user who has made the latest update on this object"
         },
         "menu": {
           "title": "Users"

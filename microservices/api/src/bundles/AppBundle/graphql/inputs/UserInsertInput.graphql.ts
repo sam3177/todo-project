@@ -3,7 +3,6 @@ export default /* GraphQL */ `
     isEnabled: Boolean!
     profile: UserProfileInput!
     roles: [UserRoles]!
-    todosIds: [ObjectId]!
   }
 
   input UserProfileInput {

@@ -6,7 +6,11 @@ import { Routes } from "@bundles/UIAppBundle";
 import { Service } from "@bluelibs/core";
 import { IComponents, XRouter, use, QueryBodyType } from "@bluelibs/x-ui";
 import * as Ant from "antd";
-import { Todo, TodosCollection } from "@bundles/UIAppBundle/collections";
+import {
+  Todo,
+  UsersCollection,
+  TodosCollection,
+} from "@bundles/UIAppBundle/collections";
 
 @Service({ transient: true })
 export class TodoList extends XList<Todo> {
@@ -43,11 +47,35 @@ export class TodoList extends XList<Todo> {
           return <UIComponents.AdminListItemRenderer {...props} />;
         },
       },
+      {
+        id: "createdBy",
+        title: t("management.todos.fields.createdBy"),
+        key: "management.todos.fields.createdBy",
+        dataIndex: ["createdBy"],
+        sorter: true,
+        render: (value, model) => {
+          const props = {
+            type: "relation",
+            value,
+            relation: {
+              path: router.path(Routes.USERS_VIEW, {
+                params: {
+                  id: value?._id,
+                },
+              }),
+              dataIndex: "fullName",
+            },
+          };
+          return <UIComponents.AdminListItemRenderer {...props} />;
+        },
+      },
     ]);
   }
 
   static getSortMap() {
-    return {};
+    return {
+      createdBy: "createdBy.fullName",
+    };
   }
 
   static getRequestBody(): QueryBodyType<Todo> {
@@ -55,6 +83,11 @@ export class TodoList extends XList<Todo> {
       _id: 1,
       title: 1,
       isDone: 1,
+      createdBy: {
+        _id: 1,
+        fullName: 1,
+      },
+      createdById: 1,
     };
   }
 }

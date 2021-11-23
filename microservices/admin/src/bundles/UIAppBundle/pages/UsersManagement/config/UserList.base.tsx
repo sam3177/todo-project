@@ -6,11 +6,7 @@ import { Routes } from "@bundles/UIAppBundle";
 import { Service } from "@bluelibs/core";
 import { IComponents, XRouter, use, QueryBodyType } from "@bluelibs/x-ui";
 import * as Ant from "antd";
-import {
-  User,
-  UsersCollection,
-  TodosCollection,
-} from "@bundles/UIAppBundle/collections";
+import { User, UsersCollection } from "@bundles/UIAppBundle/collections";
 
 @Service({ transient: true })
 export class UserList extends XList<User> {
@@ -185,37 +181,6 @@ export class UserList extends XList<User> {
           return <UIComponents.AdminListItemRenderer {...props} />;
         },
       },
-      {
-        id: "todos",
-        title: t("management.users.fields.todos"),
-        key: "management.users.fields.todos",
-        dataIndex: ["todos"],
-        sorter: true,
-        render: (value, model) => {
-          return (
-            <>
-              {value &&
-                value.map((value: any, idx: number) => {
-                  const props = {
-                    type: "relation",
-                    value,
-                    relation: {
-                      path: router.path(Routes.TODOS_VIEW, {
-                        params: {
-                          id: value?._id,
-                        },
-                      }),
-                      dataIndex: "title",
-                    },
-                  };
-                  return (
-                    <UIComponents.AdminListItemRenderer {...props} key={idx} />
-                  );
-                })}
-            </>
-          );
-        },
-      },
     ]);
   }
 
@@ -223,7 +188,6 @@ export class UserList extends XList<User> {
     return {
       createdBy: "createdBy.fullName",
       updatedBy: "updatedBy.fullName",
-      todos: "todos.title",
     };
   }
 
@@ -250,11 +214,6 @@ export class UserList extends XList<User> {
         fullName: 1,
       },
       updatedById: 1,
-      todos: {
-        _id: 1,
-        title: 1,
-      },
-      todosIds: 1,
     };
   }
 }

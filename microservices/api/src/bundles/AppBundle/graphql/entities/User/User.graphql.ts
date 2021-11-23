@@ -21,8 +21,6 @@ export default /* GraphQL */ `
     isEnabled: Boolean!
     profile: UserProfile!
     roles: [UserRoles]!
-    todos: [Todo]!
-    todosIds: [ObjectId]!
 
     """
     Represents the last time when the object was updated

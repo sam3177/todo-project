@@ -372,16 +372,20 @@ export enum SubscriptionEventType {
 export type Todo = {
   __typename?: 'Todo';
   _id?: Maybe<Scalars['ObjectId']>;
+  createdBy: User;
+  createdById: Scalars['ObjectId'];
   isDone: Scalars['Boolean'];
   title: Scalars['String'];
 };
 
 export type TodoInsertInput = {
+  createdById: Scalars['ObjectId'];
   isDone: Scalars['Boolean'];
   title: Scalars['String'];
 };
 
 export type TodoUpdateInput = {
+  createdById?: Maybe<Scalars['ObjectId']>;
   isDone?: Maybe<Scalars['Boolean']>;
   title?: Maybe<Scalars['String']>;
 };
@@ -401,8 +405,6 @@ export type User = {
   isEnabled: Scalars['Boolean'];
   profile: UserProfile;
   roles: Array<Maybe<UserRoles>>;
-  todos: Array<Maybe<Todo>>;
-  todosIds: Array<Maybe<Scalars['ObjectId']>>;
   /** Represents the last time when the object was updated */
   updatedAt: Scalars['Date'];
   /** Represents the user who has made the latest update on this object */
@@ -415,7 +417,6 @@ export type UserInsertInput = {
   isEnabled: Scalars['Boolean'];
   profile: UserProfileInput;
   roles: Array<Maybe<UserRoles>>;
-  todosIds: Array<Maybe<Scalars['ObjectId']>>;
 };
 
 export type UserProfile = {
@@ -440,7 +441,6 @@ export type UserUpdateInput = {
   isEnabled?: Maybe<Scalars['Boolean']>;
   profile?: Maybe<UserProfileInput>;
   roles?: Maybe<Array<Maybe<UserRoles>>>;
-  todosIds?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
 };
 
 export type VerifyEmailInput = {

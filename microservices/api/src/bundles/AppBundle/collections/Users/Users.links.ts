@@ -1,4 +1,3 @@
-import { TodosCollection } from "../Todos/Todos.collection";
 import { UsersCollection } from "./Users.collection";
 import { IBundleLinkCollectionOption } from "@bluelibs/mongo-bundle";
 
@@ -13,10 +12,4 @@ export const createdBy: IBundleLinkCollectionOption = {
 export const updatedBy: IBundleLinkCollectionOption = {
   collection: () => UsersCollection,
   field: "updatedById",
-};
-
-export const todos: IBundleLinkCollectionOption = {
-  collection: () => TodosCollection,
-  many: true,
-  field: "todosIds",
 };

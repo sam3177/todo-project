@@ -5,11 +5,7 @@ import { Service, Inject } from "@bluelibs/core";
 import { SmileOutlined } from "@ant-design/icons";
 import { Routes } from "@bundles/UIAppBundle";
 import * as Ant from "antd";
-import {
-  User,
-  UsersCollection,
-  TodosCollection,
-} from "@bundles/UIAppBundle/collections";
+import { User, UsersCollection } from "@bundles/UIAppBundle/collections";
 
 @Service({ transient: true })
 export class UserEditForm extends XForm {
@@ -92,22 +88,6 @@ export class UserEditForm extends XForm {
           },
         ],
       },
-
-      {
-        id: "todosIds",
-        label: t("management.users.fields.todos"),
-        name: ["todosIds"],
-        required: true,
-        render: (props) => (
-          <Ant.Form.Item {...props}>
-            <UIComponents.RemoteSelect
-              collectionClass={TodosCollection}
-              field="title"
-              mode="multiple"
-            />
-          </Ant.Form.Item>
-        ),
-      },
     ]);
   }
 
@@ -120,11 +100,6 @@ export class UserEditForm extends XForm {
         firstName: 1,
         lastName: 1,
       },
-      todos: {
-        _id: 1,
-        title: 1,
-      },
-      todosIds: 1,
     };
   }
 

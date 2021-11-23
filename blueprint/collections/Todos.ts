@@ -17,5 +17,10 @@ export const Todos = collection({
 		count: 10,
 	},
 	fields: [ field.string('title'), field.boolean('isDone') ],
-	relations: [],
+	relations: [
+		relation({
+			id:'createdBy',
+			to:'Users'
+		})
+	],
 });

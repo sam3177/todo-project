@@ -26,7 +26,4 @@ export class UserInsertInput {
       .required()
   )
   roles: UserRoles[] = [];
-
-  @Is(an.array().of(an.objectId()).required())
-  todosIds: any[] = [];
 }

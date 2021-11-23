@@ -6,6 +6,7 @@ import {
   TODOS_CREATE as BASE_TODOS_CREATE,
   TODOS_EDIT as BASE_TODOS_EDIT,
   TODOS_VIEW as BASE_TODOS_VIEW,
+  MY_TODOS as BASE_MY_TODOS
 } from "./config/routes";
 
 export const TODOS_LIST: IRoute = {
@@ -22,4 +23,7 @@ export const TODOS_EDIT: IRoute = {
 
 export const TODOS_VIEW: IRoute = {
   ...BASE_TODOS_VIEW,
+};
+export const MY_TODOS: IRoute = {
+  ...BASE_MY_TODOS,
 };

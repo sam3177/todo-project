@@ -4,7 +4,11 @@ import { XFormElementType, XList, XForm } from "@bluelibs/x-ui-admin";
 import { Service } from "@bluelibs/core";
 import { IComponents, XRouter, use } from "@bluelibs/x-ui";
 import * as Ant from "antd";
-import { Todo, TodosCollection } from "@bundles/UIAppBundle/collections";
+import {
+  Todo,
+  UsersCollection,
+  TodosCollection,
+} from "@bundles/UIAppBundle/collections";
 
 @Service({ transient: true })
 export class TodoListFiltersForm extends XForm {
@@ -38,6 +42,22 @@ export class TodoListFiltersForm extends XForm {
                 Yes
               </Ant.Radio>
             </Ant.Radio.Group>
+          </Ant.Form.Item>
+        ),
+      },
+
+      {
+        id: "createdById",
+        label: t("management.todos.fields.createdBy"),
+        name: ["createdById"],
+        render: (props) => (
+          <Ant.Form.Item {...props}>
+            <UIComponents.RemoteSelect
+              collectionClass={UsersCollection}
+              field="fullName"
+              placeholder="Please select an option"
+              mode="multiple"
+            />
           </Ant.Form.Item>
         ),
       },

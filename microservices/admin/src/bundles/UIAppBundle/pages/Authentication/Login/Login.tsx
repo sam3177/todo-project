@@ -38,7 +38,7 @@ export function Login() {
         notification.success({
           message: "Welcome!",
         });
-        router.go(Routes.DASHBOARD);
+        router.go(Routes.MY_TODOS);
       })
       .catch((err) => {
         setLoginError(err);

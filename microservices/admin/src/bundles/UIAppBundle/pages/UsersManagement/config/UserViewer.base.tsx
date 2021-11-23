@@ -171,35 +171,6 @@ export class UserViewer extends XViewer {
           return <UIComponents.AdminListItemRenderer {...props} />;
         },
       },
-      {
-        id: "todos",
-        label: t("management.users.fields.todos"),
-        dataIndex: ["todos"],
-        render: (value) => {
-          return (
-            <>
-              {value &&
-                value.map((value: any, idx: number) => {
-                  const props = {
-                    type: "relation",
-                    value,
-                    relation: {
-                      path: router.path(Routes.TODOS_VIEW, {
-                        params: {
-                          id: value?._id,
-                        },
-                      }),
-                      dataIndex: "title",
-                    },
-                  };
-                  return (
-                    <UIComponents.AdminListItemRenderer {...props} key={idx} />
-                  );
-                })}
-            </>
-          );
-        },
-      },
     ]);
   }
 
@@ -226,11 +197,6 @@ export class UserViewer extends XViewer {
         fullName: 1,
       },
       updatedById: 1,
-      todos: {
-        _id: 1,
-        title: 1,
-      },
-      todosIds: 1,
     };
   }
 }

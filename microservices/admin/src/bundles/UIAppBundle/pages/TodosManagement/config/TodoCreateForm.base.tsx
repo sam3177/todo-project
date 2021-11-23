@@ -7,7 +7,11 @@ import { Routes } from "@bundles/UIAppBundle";
 import { Service, Inject } from "@bluelibs/core";
 import { features } from "./features";
 
-import { Todo, TodosCollection } from "@bundles/UIAppBundle/collections";
+import {
+  Todo,
+  UsersCollection,
+  TodosCollection,
+} from "@bundles/UIAppBundle/collections";
 
 @Service({ transient: true })
 export class TodoCreateForm extends XForm {
@@ -42,6 +46,21 @@ export class TodoCreateForm extends XForm {
                 Yes
               </Ant.Radio>
             </Ant.Radio.Group>
+          </Ant.Form.Item>
+        ),
+      },
+
+      {
+        id: "createdById",
+        label: t("management.todos.fields.createdBy"),
+        name: ["createdById"],
+        required: true,
+        render: (props) => (
+          <Ant.Form.Item {...props}>
+            <UIComponents.RemoteSelect
+              collectionClass={UsersCollection}
+              field="fullName"
+            />
           </Ant.Form.Item>
         ),
       },

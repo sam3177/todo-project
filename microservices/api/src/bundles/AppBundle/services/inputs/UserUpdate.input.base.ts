@@ -26,7 +26,4 @@ export class UserUpdateInput {
       .required()
   )
   roles?: UserRoles[] = [];
-
-  @Is(an.array().of(an.objectId()))
-  todosIds?: any[] = [];
 }

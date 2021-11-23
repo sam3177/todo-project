@@ -22,7 +22,6 @@ export function Dashboard() {
   return (
     <UIComponents.AdminLayout>
       <PageHeader title="Dashboard" />
-
       <Card>
         <Row gutter={[16, 24]}>{cards}</Row>
       </Card>

@@ -1,7 +1,6 @@
 /** overridable */
 import { Schema, Is, a, an } from "@bluelibs/validator-bundle";
 import { IPasswordAuthenticationStrategy } from "@bluelibs/password-bundle";
-import { Todo } from "../";
 import { UserRoles } from "./enums/UserRoles.enum";
 export { UserRoles };
 
@@ -64,11 +63,6 @@ export class User {
       .required()
   )
   roles: UserRoles[];
-
-  todos: Todo[] = [];
-
-  @Is(an.array().of(an.objectId()).required())
-  todosIds: any[] = [];
 
   /**
    * @description Represents the last time when the object was updated

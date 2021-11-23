@@ -2,7 +2,13 @@
   "en": {
     "management": {
       "todos": {
-        "fields": { "_id": "ID", "title": "Title", "isDone": "Is Done" },
+        "fields": {
+          "_id": "ID",
+          "title": "Title",
+          "isDone": "Is Done",
+          "createdById": "Created By Id",
+          "createdBy": "Created By"
+        },
         "menu": {
           "title": "Todos"
         },
