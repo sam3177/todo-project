@@ -12,9 +12,7 @@ export default {
 		{
 			TodosFindOne: [ X.ToNovaOne(TodosCollection) ],
 			TodosFind: [
-				X.ToNova(TodosCollection, async (_, args, ctx) => {
-					return { filters: { createdById: ctx.userId } };
-				}),
+				X.ToNova(TodosCollection),
 			],
 			TodosCount: [ X.ToCollectionCount(TodosCollection) ],
 		},
@@ -29,14 +27,7 @@ export default {
 				X.ToNovaByResultID(TodosCollection),
 			],
 			TodosUpdateOne: [
-				// X.Secure([
-				// 	{ match: X.Secure.Match.Roles('ADMIN') },
-				// 	{
-				// 		run: [
-				// 			X.Secure.IsUser(TodosCollection, 'createdById', '_id'),
-				// 		],
-				// 	},
-				// ]),
+				
 				X.ToModel(TodoUpdateInput, { field: 'document' }),
 				X.Validate({ field: 'document' }),
 				X.CheckDocumentExists(TodosCollection),

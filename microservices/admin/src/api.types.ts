@@ -65,6 +65,10 @@ export type ChangePasswordInput = {
   newPassword: Scalars['String'];
 };
 
+export type CheckTodoInput = {
+  isDone?: Maybe<Scalars['Boolean']>;
+};
+
 
 export type DocumentUpdateInput = {
   _id: Scalars['ObjectId'];
@@ -107,6 +111,9 @@ export type Mutation = {
   UsersInsertOne?: Maybe<User>;
   UsersUpdateOne: User;
   UsersDeleteOne?: Maybe<Scalars['Boolean']>;
+  userTodosInsertOne?: Maybe<Todo>;
+  userTodosUpdateOne: Todo;
+  userTodosDeleteOne?: Maybe<Scalars['Boolean']>;
   NewTodo?: Maybe<Todo>;
   RegisterUser?: Maybe<Scalars['Boolean']>;
   register: RegistrationResponse;
@@ -184,6 +191,22 @@ export type MutationUsersDeleteOneArgs = {
 };
 
 
+export type MutationuserTodosInsertOneArgs = {
+  input: NewTodoInfoInput;
+};
+
+
+export type MutationuserTodosUpdateOneArgs = {
+  _id: Scalars['ObjectId'];
+  document: TodoUpdateInput;
+};
+
+
+export type MutationuserTodosDeleteOneArgs = {
+  _id: Scalars['ObjectId'];
+};
+
+
 export type MutationNewTodoArgs = {
   input: NewTodoInfoInput;
 };
@@ -251,6 +274,10 @@ export type Query = {
   UsersFindOneByID?: Maybe<User>;
   UsersFind: Array<Maybe<User>>;
   UsersCount: Scalars['Int'];
+  userTodosFindOne?: Maybe<Todo>;
+  userTodosFindOneByID?: Maybe<Todo>;
+  userTodosFind: Array<Maybe<Todo>>;
+  userTodosCount: Scalars['Int'];
   me: User;
   framework?: Maybe<Scalars['String']>;
 };
@@ -315,6 +342,26 @@ export type QueryUsersCountArgs = {
   query?: Maybe<QueryInput>;
 };
 
+
+export type QueryuserTodosFindOneArgs = {
+  query?: Maybe<QueryInput>;
+};
+
+
+export type QueryuserTodosFindOneByIDArgs = {
+  _id: Scalars['ObjectId'];
+};
+
+
+export type QueryuserTodosFindArgs = {
+  query?: Maybe<QueryInput>;
+};
+
+
+export type QueryuserTodosCountArgs = {
+  query?: Maybe<QueryInput>;
+};
+
 export type QueryInput = {
   filters?: Maybe<Scalars['EJSON']>;
   options?: Maybe<QueryOptionsInput>;
@@ -358,6 +405,8 @@ export type Subscription = {
   TodosSubscriptionCount?: Maybe<SubscriptionCountEvent>;
   UsersSubscription?: Maybe<SubscriptionEvent>;
   UsersSubscriptionCount?: Maybe<SubscriptionCountEvent>;
+  userTodosSubscription?: Maybe<SubscriptionEvent>;
+  userTodosSubscriptionCount?: Maybe<SubscriptionCountEvent>;
 };
 
 
@@ -377,6 +426,16 @@ export type SubscriptionUsersSubscriptionArgs = {
 
 
 export type SubscriptionUsersSubscriptionCountArgs = {
+  filters?: Maybe<Scalars['EJSON']>;
+};
+
+
+export type SubscriptionuserTodosSubscriptionArgs = {
+  body?: Maybe<Scalars['EJSON']>;
+};
+
+
+export type SubscriptionuserTodosSubscriptionCountArgs = {
   filters?: Maybe<Scalars['EJSON']>;
 };
 

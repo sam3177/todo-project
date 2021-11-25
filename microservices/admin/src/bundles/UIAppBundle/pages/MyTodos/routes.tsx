@@ -1,14 +1,14 @@
 import { IRoute } from '@bluelibs/x-ui';
-import { SettingFilled } from '@ant-design/icons';
+import {UnorderedListOutlined } from '@ant-design/icons';
 import { MyTodos } from './MyTodos';
 
 export const MY_TODOS: IRoute = {
-	path: '/my-todos',
+	path: '/user/my-todos',
 	component: MyTodos,
-	// roles: [ 'ADMIN' ],
+	roles: [ 'USER' ],
 	menu: {
 		key: 'MY TODOS',
 		// label: "management.todos.menu.title",
-		icon: SettingFilled,
+		icon: UnorderedListOutlined,
 	},
 };

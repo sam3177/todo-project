@@ -18,9 +18,10 @@ import {
 	TodosCollection,
 	UsersCollection,
 } from '@bundles/UIAppBundle/collections';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { NEW_TODO } from '@bundles/UIAppBundle/mutations/NewTodo.mutation';
 import './styles.scss'
+import { GET_USER_TODOS } from '@bundles/UIAppBundle/queries/getUserTodos.query';
 
 export function MyTodos (){
 	const UIComponents = useUIComponents();
@@ -31,7 +32,7 @@ export function MyTodos (){
 	const [ userId, setUserId ] = useState<string>();
 	const [ todos, setTodos ] = useState<Todo[]>([]);
 	const [ todoTitle, setTodoTitle ] = useState<string>();
-
+	const { loading:isLoading, error, data } = useQuery(GET_USER_TODOS);
 	const [
 		addTodo,
 		{ data: mutationData, loading, error: mutationError },
@@ -45,32 +46,27 @@ export function MyTodos (){
 		[ user ],
 	);
 
-	const { data, error, isLoading } = useData(
-		TodosCollection,
-		{},
-		{ title: 1, isDone: 1, _id: 1, createdBy: { _id: 1 } },
-	);
 	const todosCollection = use(TodosCollection);
 	useEffect(
 		() => {
 			if (isLoading) return;
-			setTodos(data as Todo[]);
+			console.log(data)
+			setTodos(data.userTodosFind as Todo[]);
 		},
 		[ isLoading ],
 	);
-
+		console.log(todos)
 	const addNewTodo = async () => {
 		const todoObj: NewTodoInfoInput = {
 			title: todoTitle,
 			isDone: false,
 			createdById: userId,
 		};
-		// console.log(todos)
-		// console.log('&&&&&&', userId, todoTitle);
 		const freshTodo = await addTodo({
 			variables: { input: todoObj },
 		});
-		setTodos((oldTodos) => [ ...oldTodos, freshTodo.data.NewTodo ]);
+		console.log(freshTodo)
+		setTodos((oldTodos) => [ ...oldTodos, freshTodo.data.userTodosInsertOne ]);
 	};
 	const checkTodo = async (id, oldVal) => {
 		await todosCollection.updateOne(id, {
@@ -131,15 +127,7 @@ export function MyTodos (){
 					</Ant.Col>
 				</Ant.Row>
 			</Ant.PageHeader>
-
-			{api.state.isError && (
-				<Ant.Alert
-					type='error'
-					message={t('generics.error_message')}
-				/>
-			)}
-
-			<Ant.Layout.Content>
+        <Ant.Layout.Content>
 				<Provider>
 					<div className='page-todos-list'>
 						{todos && todos.map((todo) => renderTodo(todo))}
@@ -147,5 +135,9 @@ export function MyTodos (){
 				</Provider>
 			</Ant.Layout.Content>
 		</UIComponents.AdminLayout>
+		
+			
+
+			
 	);
 }

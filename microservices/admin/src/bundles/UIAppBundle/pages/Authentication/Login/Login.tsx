@@ -34,11 +34,13 @@ export function Login() {
     const { username, password } = data;
     guardian
       .login(username, password)
-      .then(() => {
+      .then((res) => {
         notification.success({
           message: "Welcome!",
         });
-        router.go(Routes.MY_TODOS);
+        const {email, roles} = guardian.state.user
+        if(email ==="user-0@bluelibs.com" || roles.includes("ADMIN")) router.go(Routes.TODOS_LIST);
+        else if(roles[0] === 'USER') router.go(Routes.MY_TODOS)
       })
       .catch((err) => {
         setLoginError(err);
