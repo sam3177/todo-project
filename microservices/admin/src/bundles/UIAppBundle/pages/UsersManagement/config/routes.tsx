@@ -11,7 +11,6 @@ import { SettingFilled } from "@ant-design/icons";
 export const USERS_LIST: IRoute = {
   path: "/admin/users",
   component: UsersList,
-  roles:['ADMIN'],
   menu: {
     key: "USERS_LIST",
     label: "management.users.menu.title",
@@ -22,20 +21,14 @@ export const USERS_LIST: IRoute = {
 export const USERS_CREATE: IRoute = {
   path: "/admin/users/create",
   component: UsersCreate,
-  roles:['ADMIN'],
-
 };
 
 export const USERS_EDIT: IRoute<{ id: string }> = {
   path: "/admin/users/:id/edit",
   component: UsersEdit,
-  roles:['ADMIN'],
-
 };
 
 export const USERS_VIEW: IRoute<{ id: string }> = {
   path: "/admin/users/:id/view",
   component: UsersView,
-  roles:['ADMIN'],
-
 };

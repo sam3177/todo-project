@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 
 
 export const UPDATE_TODO = gql`
-mutation UserTodosUpdateOne($input:NewTodoInfoInput!){
-  userTodosUpdateOne(input:$input){
+mutation UserTodosUpdateOne($_id:ObjectId!,$document:TodoUpdateInput!){
+  userTodosUpdateOne(_id:$_id,document:$document){
     title
     _id
     createdById

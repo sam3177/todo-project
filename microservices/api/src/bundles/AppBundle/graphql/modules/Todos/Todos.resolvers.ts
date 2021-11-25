@@ -27,7 +27,6 @@ export default {
 				X.ToNovaByResultID(TodosCollection),
 			],
 			TodosUpdateOne: [
-				
 				X.ToModel(TodoUpdateInput, { field: 'document' }),
 				X.Validate({ field: 'document' }),
 				X.CheckDocumentExists(TodosCollection),

@@ -20,9 +20,11 @@ import {
 } from '@bundles/UIAppBundle/collections';
 import { useMutation, useQuery } from '@apollo/client';
 import { NEW_TODO } from '@bundles/UIAppBundle/mutations/NewTodo.mutation';
-import './styles.scss'
+import { UPDATE_TODO } from '@bundles/UIAppBundle/mutations/UpdateTodo.mutation';
+import { DELETE_TODO } from '@bundles/UIAppBundle/mutations/DeleteTodo.mutation';
 import { GET_USER_TODOS } from '@bundles/UIAppBundle/queries/getUserTodos.query';
 
+import './styles.scss';
 export function MyTodos (){
 	const UIComponents = useUIComponents();
 	const router = useRouter();
@@ -32,11 +34,12 @@ export function MyTodos (){
 	const [ userId, setUserId ] = useState<string>();
 	const [ todos, setTodos ] = useState<Todo[]>([]);
 	const [ todoTitle, setTodoTitle ] = useState<string>();
-	const { loading:isLoading, error, data } = useQuery(GET_USER_TODOS);
-	const [
-		addTodo,
-		{ data: mutationData, loading, error: mutationError },
-	] = useMutation(NEW_TODO);
+	const { loading: isLoading, error, data } = useQuery(
+		GET_USER_TODOS,
+	);
+	const [ addTodo ] = useMutation(NEW_TODO);
+	const [ updateTodo ] = useMutation(UPDATE_TODO);
+	const [ removeTodo ] = useMutation(DELETE_TODO);
 
 	useEffect(
 		() => {
@@ -45,17 +48,15 @@ export function MyTodos (){
 		},
 		[ user ],
 	);
-
-	const todosCollection = use(TodosCollection);
 	useEffect(
 		() => {
 			if (isLoading) return;
-			console.log(data)
+			console.log(data);
 			setTodos(data.userTodosFind as Todo[]);
 		},
 		[ isLoading ],
 	);
-		console.log(todos)
+	console.log(todos);
 	const addNewTodo = async () => {
 		const todoObj: NewTodoInfoInput = {
 			title: todoTitle,
@@ -63,14 +64,17 @@ export function MyTodos (){
 			createdById: userId,
 		};
 		const freshTodo = await addTodo({
-			variables: { input: todoObj },
+			variables: { document: todoObj },
 		});
-		console.log(freshTodo)
-		setTodos((oldTodos) => [ ...oldTodos, freshTodo.data.userTodosInsertOne ]);
+		console.log(freshTodo);
+		setTodos((oldTodos) => [
+			...oldTodos,
+			freshTodo.data.userTodosInsertOne,
+		]);
 	};
 	const checkTodo = async (id, oldVal) => {
-		await todosCollection.updateOne(id, {
-			isDone: !oldVal,
+		await updateTodo({
+			variables: { _id: id, document: { isDone: !oldVal } },
 		});
 		setTodos((oldTodos) =>
 			oldTodos.map(
@@ -80,7 +84,7 @@ export function MyTodos (){
 		);
 	};
 	const deleteTodo = async (id) => {
-		await todosCollection.deleteOne(id);
+		await removeTodo({ variables: { _id: id } });
 		setTodos((oldTodos) =>
 			oldTodos.filter((todo) => todo._id !== id),
 		);
@@ -98,7 +102,9 @@ export function MyTodos (){
 				/>
 			</Ant.Col>
 			<Ant.Col span={6}>
-				<Ant.Button className="delete-todo-btn" onClick={() => deleteTodo(todo._id)}>
+				<Ant.Button
+					className='delete-todo-btn'
+					onClick={() => deleteTodo(todo._id)}>
 					<DeleteOutlined />
 				</Ant.Button>
 			</Ant.Col>
@@ -118,7 +124,7 @@ export function MyTodos (){
 					</Ant.Col>
 					<Ant.Col span={6}>
 						<Ant.Button
-						className="new-todo-btn"
+							className='new-todo-btn'
 							key='1'
 							onClick={addNewTodo}
 							icon={<PlusOutlined />}>
@@ -127,7 +133,7 @@ export function MyTodos (){
 					</Ant.Col>
 				</Ant.Row>
 			</Ant.PageHeader>
-        <Ant.Layout.Content>
+			<Ant.Layout.Content>
 				<Provider>
 					<div className='page-todos-list'>
 						{todos && todos.map((todo) => renderTodo(todo))}
@@ -135,9 +141,5 @@ export function MyTodos (){
 				</Provider>
 			</Ant.Layout.Content>
 		</UIComponents.AdminLayout>
-		
-			
-
-			
 	);
 }

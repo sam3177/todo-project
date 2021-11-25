@@ -11,7 +11,6 @@ import { SettingFilled } from "@ant-design/icons";
 export const TODOS_LIST: IRoute = {
   path: "/admin/todos",
   component: TodosList,
-  roles:['ADMIN'],
   menu: {
     key: "TODOS_LIST",
     label: "management.todos.menu.title",
@@ -22,20 +21,14 @@ export const TODOS_LIST: IRoute = {
 export const TODOS_CREATE: IRoute = {
   path: "/admin/todos/create",
   component: TodosCreate,
-  roles:['ADMIN'],
-
 };
 
 export const TODOS_EDIT: IRoute<{ id: string }> = {
   path: "/admin/todos/:id/edit",
   component: TodosEdit,
-  roles:['ADMIN'],
-
 };
 
 export const TODOS_VIEW: IRoute<{ id: string }> = {
   path: "/admin/todos/:id/view",
   component: TodosView,
-  roles:['ADMIN'],
-
 };

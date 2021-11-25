@@ -191,7 +191,7 @@ export type MutationUsersDeleteOneArgs = {
 
 
 export type MutationuserTodosInsertOneArgs = {
-  input: NewTodoInfoInput;
+  document: NewTodoInfoInput;
 };
 
 

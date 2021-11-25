@@ -9,17 +9,17 @@ import {
 } from "./config/routes";
 
 export const USERS_LIST: IRoute = {
-  ...BASE_USERS_LIST,
+  ...BASE_USERS_LIST, roles:["ADMIN"]
 };
 
 export const USERS_CREATE: IRoute = {
-  ...BASE_USERS_CREATE,
+  ...BASE_USERS_CREATE, roles:["ADMIN"]
 };
 
 export const USERS_EDIT: IRoute = {
-  ...BASE_USERS_EDIT,
+  ...BASE_USERS_EDIT, roles:["ADMIN"]
 };
 
 export const USERS_VIEW: IRoute = {
-  ...BASE_USERS_VIEW,
+  ...BASE_USERS_VIEW, roles:["ADMIN"]
 };

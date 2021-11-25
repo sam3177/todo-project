@@ -7,7 +7,7 @@ export default /* GraphQL */ `
   }
 
   type Mutation {
-    userTodosInsertOne(input: NewTodoInfoInput!): Todo
+    userTodosInsertOne(document: NewTodoInfoInput!): Todo
     userTodosUpdateOne(_id: ObjectId!, document: TodoUpdateInput!): Todo!
     userTodosDeleteOne(_id: ObjectId!): Boolean
   }
