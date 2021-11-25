@@ -1,0 +1,15 @@
+.page-todos-list{
+  margin-left:20px;
+}
+button.new-todo-btn{
+  height:100%;
+  margin-left:5px;
+}
+button.delete-todo-btn{
+  color:red;
+}
+span.ant-checkbox-checked .ant-checkbox-inner{
+  
+  background-color:rgb(29, 243, 29);
+  border-color: #d9d9d9;
+}

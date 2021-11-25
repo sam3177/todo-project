@@ -17,7 +17,7 @@ export const Users = collection({
     softdeletable: true,
   },
   mock: {
-    count: 10,
+    count: 2,
   },
   fields: [
     // Standard fields present for user (isEnabled, createdAt)
@@ -29,7 +29,7 @@ export const Users = collection({
     field({
       id: "roles",
       type: field.types.ENUM,
-      enumValues: ["ADMIN", "SALES", "MANAGER", "END_CUSTOMER"],
+      enumValues: ["ADMIN", "USER"],
       isArray: true,
     }),
     field({

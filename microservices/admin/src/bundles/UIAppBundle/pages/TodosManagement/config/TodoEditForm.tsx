@@ -1,5 +1,5 @@
 import { Service } from "@bluelibs/core";
-import { TodoEditForm as BaseTodoEditForm } from "./TodoEditForm.base";
+import { TodoEditForm as BaseTodoEditForm } from "@bundles/UIAppBundle/pages/TodosManagement/config/TodoEditForm.base";
 import { QueryBodyType } from "@bluelibs/x-ui";
 import { Todo } from "@bundles/UIAppBundle/collections";
 

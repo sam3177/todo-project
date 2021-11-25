@@ -11,8 +11,8 @@ import {
 } from "@bluelibs/x-ui";
 import { ObjectId } from "@bluelibs/ejson";
 import { Todo, TodosCollection } from "@bundles/UIAppBundle/collections";
-import { TodoViewer } from "../../config/TodoViewer";
-import { features } from "../../config/features";
+import { TodoViewer } from "@bundles/UIAppBundle/pages/TodosManagement/config/TodoViewer";
+import { features } from "@bundles/UIAppBundle/pages/TodosManagement/config/features";
 
 export function TodosView(props: { id: string }) {
   const UIComponents = useUIComponents();

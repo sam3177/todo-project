@@ -11,6 +11,8 @@ import {
   use,
 } from "@bluelibs/x-ui";
 import { gql } from "@apollo/client";
+import { NewUserInfoInput } from "@root/api.types";
+import { REGISTER_USER } from "../mutations/RegisterUser.mutation";
 
 type AppUserType = GuardianUserType & {
   fullName: string;
@@ -19,6 +21,11 @@ type AppUserType = GuardianUserType & {
 type AppRegisterType = GuardianUserRegistrationType;
 
 export class AppGuardian extends GuardianSmart<AppUserType, AppRegisterType> {
+
+  public async registerUser(input:NewUserInfoInput) {
+    await this.apolloClient.mutate({mutation:REGISTER_USER,variables:{input}})
+  }
+
   protected retrieveUser(): Promise<AppUserType> {
     return this.apolloClient
       .query({

@@ -1,3 +1,6 @@
+import "./getUserTodos.service.test.ts";
+import "./NewTodo.service.test.ts";
+import "./UserRegistration.service.test.ts";
 // import { container } from "../../../__tests__/ecosystem";
 
 test("dummy", () => {

@@ -23,5 +23,5 @@
       "@root/*": ["src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "node_modules/TodosManagement"]
 }

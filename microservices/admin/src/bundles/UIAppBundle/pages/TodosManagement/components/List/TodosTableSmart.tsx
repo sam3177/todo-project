@@ -12,8 +12,8 @@ import { AntTableSmart, Consumer } from "@bluelibs/x-ui-admin";
 import { QueryBodyType } from "@bluelibs/x-ui";
 import { Service } from "@bluelibs/core";
 import * as Ant from "antd";
-import { features } from "../../config/features";
-import { TodoList } from "../../config/TodoList";
+import { features } from "@bundles/UIAppBundle/pages/TodosManagement/config/features";
+import { TodoList } from "@bundles/UIAppBundle/pages/TodosManagement/config/TodoList";
 
 export class TodosAntTableSmart extends AntTableSmart<Todo> {
   collectionClass = TodosCollection;

@@ -1,7 +1,7 @@
 import { Routes } from "@bundles/UIAppBundle";
 import { useUIComponents, useRouter, use, useTranslate } from "@bluelibs/x-ui";
 import * as Ant from "antd";
-import { TodoCreateForm } from "../../config/TodoCreateForm";
+import { TodoCreateForm } from "@bundles/UIAppBundle/pages/TodosManagement/config/TodoCreateForm";
 import { Todo, TodosCollection } from "@bundles/UIAppBundle/collections";
 
 const formLayout = {

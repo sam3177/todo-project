@@ -1,7 +1,7 @@
 import { Service } from "@bluelibs/core";
 import { QueryBodyType } from "@bluelibs/x-ui";
 import { Todo } from "@bundles/UIAppBundle/collections";
-import { TodoViewer as BaseTodoViewer } from "./TodoViewer.base";
+import { TodoViewer as BaseTodoViewer } from "@bundles/UIAppBundle/pages/TodosManagement/config/TodoViewer.base";
 
 @Service({ transient: true })
 export class TodoViewer extends BaseTodoViewer {

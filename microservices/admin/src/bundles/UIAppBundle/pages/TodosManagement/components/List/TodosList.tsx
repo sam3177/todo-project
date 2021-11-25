@@ -5,12 +5,12 @@ import {
   useTranslate,
 } from "@bluelibs/x-ui";
 import { useEffect, useState, useMemo } from "react";
-import { TodosAntTableSmart } from "./TodosTableSmart";
+import { TodosAntTableSmart } from "@bundles/UIAppBundle/pages/TodosManagement/components/List/TodosTableSmart";
 import { PlusOutlined, FilterOutlined } from "@ant-design/icons";
 import * as Ant from "antd";
 import { Routes } from "@bundles/UIAppBundle";
-import { features } from "../../config/features";
-import { TodosListFilters } from "./TodosListFilters";
+import { features } from "@bundles/UIAppBundle/pages/TodosManagement/config/features";
+import { TodosListFilters } from "@bundles/UIAppBundle/pages/TodosManagement/components/List/TodosListFilters";
 
 export function TodosList() {
   const UIComponents = useUIComponents();

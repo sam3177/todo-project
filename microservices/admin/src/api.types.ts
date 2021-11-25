@@ -76,6 +76,10 @@ export type ForgotPasswordInput = {
   email: Scalars['String'];
 };
 
+export type IdInput = {
+  _id?: Maybe<Scalars['ObjectId']>;
+};
+
 
 
 export type LoginInput = {
@@ -103,6 +107,8 @@ export type Mutation = {
   UsersInsertOne?: Maybe<User>;
   UsersUpdateOne: User;
   UsersDeleteOne?: Maybe<Scalars['Boolean']>;
+  NewTodo?: Maybe<Todo>;
+  RegisterUser?: Maybe<Scalars['Boolean']>;
   register: RegistrationResponse;
   changePassword?: Maybe<Scalars['Boolean']>;
   login: LoginResponse;
@@ -178,6 +184,16 @@ export type MutationUsersDeleteOneArgs = {
 };
 
 
+export type MutationNewTodoArgs = {
+  input: NewTodoInfoInput;
+};
+
+
+export type MutationRegisterUserArgs = {
+  input: NewUserInfoInput;
+};
+
+
 export type MutationregisterArgs = {
   input: RegistrationInput;
 };
@@ -205,6 +221,19 @@ export type MutationforgotPasswordArgs = {
 
 export type MutationverifyEmailArgs = {
   input: VerifyEmailInput;
+};
+
+export type NewTodoInfoInput = {
+  createdById: Scalars['ObjectId'];
+  isDone: Scalars['Boolean'];
+  title: Scalars['String'];
+};
+
+export type NewUserInfoInput = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  password: Scalars['String'];
+  email: Scalars['String'];
 };
 
 
@@ -432,9 +461,7 @@ export type UserProfileInput = {
 
 export enum UserRoles {
   ADMIN = 'ADMIN',
-  SALES = 'SALES',
-  MANAGER = 'MANAGER',
-  END_CUSTOMER = 'END_CUSTOMER'
+  USER = 'USER'
 }
 
 export type UserUpdateInput = {

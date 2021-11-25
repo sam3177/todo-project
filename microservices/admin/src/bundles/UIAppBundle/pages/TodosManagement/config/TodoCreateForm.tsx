@@ -1,5 +1,5 @@
 import { Service } from "@bluelibs/core";
-import { TodoCreateForm as BaseTodoCreateForm } from "./TodoCreateForm.base";
+import { TodoCreateForm as BaseTodoCreateForm } from "@bundles/UIAppBundle/pages/TodosManagement/config/TodoCreateForm.base";
 
 @Service({ transient: true })
 export class TodoCreateForm extends BaseTodoCreateForm {
@@ -7,5 +7,6 @@ export class TodoCreateForm extends BaseTodoCreateForm {
     super.build();
 
     // Perform additional modifications such as updating rendering functions, labels, description
+    
   }
 }

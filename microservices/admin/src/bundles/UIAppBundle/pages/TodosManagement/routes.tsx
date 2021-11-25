@@ -1,13 +1,12 @@
 import { IRoute } from "@bluelibs/x-ui";
-import "./i18n";
+import "@bundles/UIAppBundle/pages/TodosManagement/i18n";
 
 import {
   TODOS_LIST as BASE_TODOS_LIST,
   TODOS_CREATE as BASE_TODOS_CREATE,
   TODOS_EDIT as BASE_TODOS_EDIT,
   TODOS_VIEW as BASE_TODOS_VIEW,
-  MY_TODOS as BASE_MY_TODOS
-} from "./config/routes";
+} from "@bundles/UIAppBundle/pages/TodosManagement/config/routes";
 
 export const TODOS_LIST: IRoute = {
   ...BASE_TODOS_LIST,
@@ -24,6 +23,4 @@ export const TODOS_EDIT: IRoute = {
 export const TODOS_VIEW: IRoute = {
   ...BASE_TODOS_VIEW,
 };
-export const MY_TODOS: IRoute = {
-  ...BASE_MY_TODOS,
-};
+

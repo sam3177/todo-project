@@ -3,7 +3,7 @@ import * as Ant from "antd";
 import * as React from "react";
 import * as debounce from "lodash.debounce";
 import { use, useTranslate } from "@bluelibs/x-ui";
-import { TodoListFiltersForm } from "../../config/TodoListFiltersForm";
+import { TodoListFiltersForm } from "@bundles/UIAppBundle/pages/TodosManagement/config/TodoListFiltersForm";
 
 type TodosListFiltersProps = {
   onUpdate: (filters: any) => void;

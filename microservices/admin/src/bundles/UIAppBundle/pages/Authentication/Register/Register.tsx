@@ -15,16 +15,18 @@ import {
   notification,
 } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { useAppGuardian } from "@bundles/UIAppBundle/services/AppGuardian";
 
 type FormInput = {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
+  roles: string[];
 };
 
 export function Register() {
-  const guardian = useGuardian();
+  const guardian = useAppGuardian();
   const router = useRouter();
   const tl = useTranslate("authentication.register");
   const [submitError, setSubmitError] = useState(null);
@@ -32,7 +34,7 @@ export function Register() {
   const onSubmit = (data: FormInput) => {
     const { email, password, firstName, lastName } = data;
     guardian
-      .register({
+      .registerUser({
         email,
         firstName,
         lastName,

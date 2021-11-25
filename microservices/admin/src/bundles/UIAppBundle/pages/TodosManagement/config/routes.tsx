@@ -7,7 +7,6 @@ import { TodosEdit } from "../components/Edit/TodosEdit";
 import { TodosView } from "../components/View/TodosView";
 
 import { SettingFilled } from "@ant-design/icons";
-import { MyTodos } from "../components/List/MyTodos";
 
 export const TODOS_LIST: IRoute = {
   path: "/admin/todos",
@@ -32,10 +31,4 @@ export const TODOS_EDIT: IRoute<{ id: string }> = {
 export const TODOS_VIEW: IRoute<{ id: string }> = {
   path: "/admin/todos/:id/view",
   component: TodosView,
-};
-export const MY_TODOS:IRoute = {
-  path: "/my-todos",
-  component: MyTodos,
-
-  
 };

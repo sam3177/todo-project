@@ -10,8 +10,8 @@ import {
   useDataOne,
   useTranslate,
 } from "@bluelibs/x-ui";
-import { TodoEditForm } from "../../config/TodoEditForm";
-import { features } from "../../config/features";
+import { TodoEditForm } from "@bundles/UIAppBundle/pages/TodosManagement/config/TodoEditForm";
+import { features } from "@bundles/UIAppBundle/pages/TodosManagement/config/features";
 import { Todo, TodosCollection } from "@bundles/UIAppBundle/collections";
 
 const formLayout = {

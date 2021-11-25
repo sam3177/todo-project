@@ -45,8 +45,6 @@ export default /* GraphQL */ `
 
   enum UserRoles {
     ADMIN
-    SALES
-    MANAGER
-    END_CUSTOMER
+    USER
   }
 `;
