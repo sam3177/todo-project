@@ -114,7 +114,6 @@ export type Mutation = {
   userTodosInsertOne?: Maybe<Todo>;
   userTodosUpdateOne: Todo;
   userTodosDeleteOne?: Maybe<Scalars['Boolean']>;
-  NewTodo?: Maybe<Todo>;
   RegisterUser?: Maybe<Scalars['Boolean']>;
   register: RegistrationResponse;
   changePassword?: Maybe<Scalars['Boolean']>;
@@ -204,11 +203,6 @@ export type MutationuserTodosUpdateOneArgs = {
 
 export type MutationuserTodosDeleteOneArgs = {
   _id: Scalars['ObjectId'];
-};
-
-
-export type MutationNewTodoArgs = {
-  input: NewTodoInfoInput;
 };
 
 

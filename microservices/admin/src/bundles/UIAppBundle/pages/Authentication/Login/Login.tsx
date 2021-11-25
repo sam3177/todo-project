@@ -38,8 +38,8 @@ export function Login() {
         notification.success({
           message: "Welcome!",
         });
-        const {email, roles} = guardian.state.user
-        if(email ==="user-0@bluelibs.com" || roles.includes("ADMIN")) router.go(Routes.TODOS_LIST);
+        const { roles} = guardian.state.user
+        if(roles.includes("ADMIN")) router.go(Routes.DASHBOARD);
         else if(roles[0] === 'USER') router.go(Routes.MY_TODOS)
       })
       .catch((err) => {

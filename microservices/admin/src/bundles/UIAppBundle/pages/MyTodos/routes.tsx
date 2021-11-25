@@ -7,7 +7,7 @@ export const MY_TODOS: IRoute = {
 	component: MyTodos,
 	roles: [ 'USER' ],
 	menu: {
-		key: 'MY TODOS',
+		key: 'My todos',
 		// label: "management.todos.menu.title",
 		icon: UnorderedListOutlined,
 	},
