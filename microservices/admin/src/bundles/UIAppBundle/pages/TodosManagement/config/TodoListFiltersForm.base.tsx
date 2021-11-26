@@ -47,9 +47,51 @@ export class TodoListFiltersForm extends XForm {
       },
 
       {
+        id: "createdAt",
+        label: t("management.todos.fields.createdAt"),
+        name: ["createdAt"],
+        tooltip: t("management.todos.fields.createdAt_description"),
+        render: (props) => (
+          <Ant.Form.Item {...props}>
+            <Ant.DatePicker.RangePicker />
+          </Ant.Form.Item>
+        ),
+      },
+
+      {
+        id: "updatedAt",
+        label: t("management.todos.fields.updatedAt"),
+        name: ["updatedAt"],
+        tooltip: t("management.todos.fields.updatedAt_description"),
+        render: (props) => (
+          <Ant.Form.Item {...props}>
+            <Ant.DatePicker.RangePicker />
+          </Ant.Form.Item>
+        ),
+      },
+
+      {
         id: "createdById",
         label: t("management.todos.fields.createdBy"),
         name: ["createdById"],
+        tooltip: t("management.todos.fields.createdBy_description"),
+        render: (props) => (
+          <Ant.Form.Item {...props}>
+            <UIComponents.RemoteSelect
+              collectionClass={UsersCollection}
+              field="fullName"
+              placeholder="Please select an option"
+              mode="multiple"
+            />
+          </Ant.Form.Item>
+        ),
+      },
+
+      {
+        id: "updatedById",
+        label: t("management.todos.fields.updatedBy"),
+        name: ["updatedById"],
+        tooltip: t("management.todos.fields.updatedBy_description"),
         render: (props) => (
           <Ant.Form.Item {...props}>
             <UIComponents.RemoteSelect

@@ -50,9 +50,53 @@ export class TodoViewer extends XViewer {
         },
       },
       {
+        id: "createdAt",
+        label: t("management.todos.fields.createdAt"),
+        dataIndex: ["createdAt"],
+        render: (value) => {
+          const props = {
+            type: "date",
+            value,
+          };
+          return <UIComponents.AdminListItemRenderer {...props} />;
+        },
+      },
+      {
+        id: "updatedAt",
+        label: t("management.todos.fields.updatedAt"),
+        dataIndex: ["updatedAt"],
+        render: (value) => {
+          const props = {
+            type: "date",
+            value,
+          };
+          return <UIComponents.AdminListItemRenderer {...props} />;
+        },
+      },
+      {
         id: "createdBy",
         label: t("management.todos.fields.createdBy"),
         dataIndex: ["createdBy"],
+        render: (value) => {
+          const props = {
+            type: "relation",
+            value,
+            relation: {
+              path: router.path(Routes.USERS_VIEW, {
+                params: {
+                  id: value?._id,
+                },
+              }),
+              dataIndex: "fullName",
+            },
+          };
+          return <UIComponents.AdminListItemRenderer {...props} />;
+        },
+      },
+      {
+        id: "updatedBy",
+        label: t("management.todos.fields.updatedBy"),
+        dataIndex: ["updatedBy"],
         render: (value) => {
           const props = {
             type: "relation",
@@ -77,11 +121,18 @@ export class TodoViewer extends XViewer {
       _id: 1,
       title: 1,
       isDone: 1,
+      createdAt: 1,
+      updatedAt: 1,
       createdBy: {
         _id: 1,
         fullName: 1,
       },
       createdById: 1,
+      updatedBy: {
+        _id: 1,
+        fullName: 1,
+      },
+      updatedById: 1,
     };
   }
 }

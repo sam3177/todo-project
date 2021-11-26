@@ -5,3 +5,6 @@ export * from "./TodoUpdate.input";
 export * from "./Id.input";
 export * from "./NewUserInfo.input";
 export * from "./NewTodoInfo.input";
+export * from "./UserTodosCreate.input";
+export * from "./UserTodosUpdate.input";
+export * from "./UserTodosDelete.input";

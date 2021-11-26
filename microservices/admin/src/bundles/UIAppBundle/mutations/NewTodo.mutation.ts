@@ -1,15 +1,14 @@
 import { gql } from "@apollo/client";
 
 
-export const NEW_TODO = gql`
-mutation UserTodosInsertOne($document:NewTodoInfoInput!){
-  userTodosInsertOne(document:$document){
+export const USER_TODOS_CREATE = gql`
+mutation UserTodosCreate($input:UserTodosCreateInput!){
+  UserTodosCreate(input:$input){
     title
+    isDone
     _id
     createdById
-    createdBy{
-      _id
-    }
+    
   }
 }
 `

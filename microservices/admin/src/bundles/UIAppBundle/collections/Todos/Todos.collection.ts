@@ -29,11 +29,19 @@ export class TodosCollection extends Collection<Todo> {
         name: "createdBy",
         field: "createdById",
       },
+      {
+        collection: () => UsersCollection,
+        name: "updatedBy",
+        field: "updatedById",
+      },
     ];
   }
 
   // Return here how you want to transform certain fields
   getTransformMap(): CollectionTransformMap<Todo> {
-    return {};
+    return {
+      createdAt: (v) => new Date(v),
+      updatedAt: (v) => new Date(v),
+    };
   }
 }

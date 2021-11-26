@@ -1,6 +1,5 @@
 export default /* GraphQL */ `
-  input TodoInsertInput {
-    isDone: Boolean!
+  input UserTodosCreateInput {
     title: String!
   }
 `;

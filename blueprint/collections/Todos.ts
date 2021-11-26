@@ -16,11 +16,9 @@ export const Todos = collection({
 	mock: {
 		count: 10,
 	},
-	fields: [ field.string('title'), field.boolean('isDone') ],
+	fields: [ field.string('title'), field.boolean('isDone'),
+...shortcuts.fields.timestampable() ],
 	relations: [
-		relation({
-			id:'createdBy',
-			to:'Users'
-		})
+		...shortcuts.relations.blameable()
 	],
 });

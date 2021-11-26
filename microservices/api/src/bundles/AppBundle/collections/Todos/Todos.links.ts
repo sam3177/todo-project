@@ -8,3 +8,8 @@ export const createdBy: IBundleLinkCollectionOption = {
   collection: () => UsersCollection,
   field: "createdById",
 };
+
+export const updatedBy: IBundleLinkCollectionOption = {
+  collection: () => UsersCollection,
+  field: "updatedById",
+};

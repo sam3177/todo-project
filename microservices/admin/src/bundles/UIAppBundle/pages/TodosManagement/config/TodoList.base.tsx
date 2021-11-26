@@ -48,10 +48,60 @@ export class TodoList extends XList<Todo> {
         },
       },
       {
+        id: "createdAt",
+        title: t("management.todos.fields.createdAt"),
+        key: "management.todos.fields.createdAt",
+        dataIndex: ["createdAt"],
+        sorter: true,
+        render: (value, model) => {
+          const props = {
+            type: "date",
+            value,
+          };
+          return <UIComponents.AdminListItemRenderer {...props} />;
+        },
+      },
+      {
+        id: "updatedAt",
+        title: t("management.todos.fields.updatedAt"),
+        key: "management.todos.fields.updatedAt",
+        dataIndex: ["updatedAt"],
+        sorter: true,
+        render: (value, model) => {
+          const props = {
+            type: "date",
+            value,
+          };
+          return <UIComponents.AdminListItemRenderer {...props} />;
+        },
+      },
+      {
         id: "createdBy",
         title: t("management.todos.fields.createdBy"),
         key: "management.todos.fields.createdBy",
         dataIndex: ["createdBy"],
+        sorter: true,
+        render: (value, model) => {
+          const props = {
+            type: "relation",
+            value,
+            relation: {
+              path: router.path(Routes.USERS_VIEW, {
+                params: {
+                  id: value?._id,
+                },
+              }),
+              dataIndex: "fullName",
+            },
+          };
+          return <UIComponents.AdminListItemRenderer {...props} />;
+        },
+      },
+      {
+        id: "updatedBy",
+        title: t("management.todos.fields.updatedBy"),
+        key: "management.todos.fields.updatedBy",
+        dataIndex: ["updatedBy"],
         sorter: true,
         render: (value, model) => {
           const props = {
@@ -75,6 +125,7 @@ export class TodoList extends XList<Todo> {
   static getSortMap() {
     return {
       createdBy: "createdBy.fullName",
+      updatedBy: "updatedBy.fullName",
     };
   }
 
@@ -83,11 +134,18 @@ export class TodoList extends XList<Todo> {
       _id: 1,
       title: 1,
       isDone: 1,
+      createdAt: 1,
+      updatedAt: 1,
       createdBy: {
         _id: 1,
         fullName: 1,
       },
       createdById: 1,
+      updatedBy: {
+        _id: 1,
+        fullName: 1,
+      },
+      updatedById: 1,
     };
   }
 }

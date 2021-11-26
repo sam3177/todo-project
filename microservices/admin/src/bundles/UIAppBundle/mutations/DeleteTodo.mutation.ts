@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 
-export const DELETE_TODO = gql`
-mutation UserTodosDeleteOne($_id:ObjectId!){
-  userTodosDeleteOne(_id:$_id)
+export const USER_TODOS_DELETE = gql`
+mutation UserTodosDelete($input:UserTodosDeleteInput!){
+  UserTodosDelete(input:$input)
 }
 `

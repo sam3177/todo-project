@@ -65,10 +65,6 @@ export type ChangePasswordInput = {
   newPassword: Scalars['String'];
 };
 
-export type CheckTodoInput = {
-  isDone?: Maybe<Scalars['Boolean']>;
-};
-
 
 export type DocumentUpdateInput = {
   _id: Scalars['ObjectId'];
@@ -111,10 +107,10 @@ export type Mutation = {
   UsersInsertOne?: Maybe<User>;
   UsersUpdateOne: User;
   UsersDeleteOne?: Maybe<Scalars['Boolean']>;
-  userTodosInsertOne?: Maybe<Todo>;
-  userTodosUpdateOne: Todo;
-  userTodosDeleteOne?: Maybe<Scalars['Boolean']>;
   RegisterUser?: Maybe<Scalars['Boolean']>;
+  UserTodosCreate: Todo;
+  UserTodosDelete: Scalars['Boolean'];
+  UserTodosUpdate: Scalars['Boolean'];
   register: RegistrationResponse;
   changePassword?: Maybe<Scalars['Boolean']>;
   login: LoginResponse;
@@ -190,24 +186,23 @@ export type MutationUsersDeleteOneArgs = {
 };
 
 
-export type MutationuserTodosInsertOneArgs = {
-  document: NewTodoInfoInput;
-};
-
-
-export type MutationuserTodosUpdateOneArgs = {
-  _id: Scalars['ObjectId'];
-  document: TodoUpdateInput;
-};
-
-
-export type MutationuserTodosDeleteOneArgs = {
-  _id: Scalars['ObjectId'];
-};
-
-
 export type MutationRegisterUserArgs = {
   input: NewUserInfoInput;
+};
+
+
+export type MutationUserTodosCreateArgs = {
+  input: UserTodosCreateInput;
+};
+
+
+export type MutationUserTodosDeleteArgs = {
+  input: UserTodosDeleteInput;
+};
+
+
+export type MutationUserTodosUpdateArgs = {
+  input: UserTodosUpdateInput;
 };
 
 
@@ -268,10 +263,7 @@ export type Query = {
   UsersFindOneByID?: Maybe<User>;
   UsersFind: Array<Maybe<User>>;
   UsersCount: Scalars['Int'];
-  userTodosFindOne?: Maybe<Todo>;
-  userTodosFindOneByID?: Maybe<Todo>;
-  userTodosFind: Array<Maybe<Todo>>;
-  userTodosCount: Scalars['Int'];
+  UserTodosFind: Array<Maybe<Todo>>;
   me: User;
   framework?: Maybe<Scalars['String']>;
 };
@@ -336,26 +328,6 @@ export type QueryUsersCountArgs = {
   query?: Maybe<QueryInput>;
 };
 
-
-export type QueryuserTodosFindOneArgs = {
-  query?: Maybe<QueryInput>;
-};
-
-
-export type QueryuserTodosFindOneByIDArgs = {
-  _id: Scalars['ObjectId'];
-};
-
-
-export type QueryuserTodosFindArgs = {
-  query?: Maybe<QueryInput>;
-};
-
-
-export type QueryuserTodosCountArgs = {
-  query?: Maybe<QueryInput>;
-};
-
 export type QueryInput = {
   filters?: Maybe<Scalars['EJSON']>;
   options?: Maybe<QueryOptionsInput>;
@@ -399,8 +371,6 @@ export type Subscription = {
   TodosSubscriptionCount?: Maybe<SubscriptionCountEvent>;
   UsersSubscription?: Maybe<SubscriptionEvent>;
   UsersSubscriptionCount?: Maybe<SubscriptionCountEvent>;
-  userTodosSubscription?: Maybe<SubscriptionEvent>;
-  userTodosSubscriptionCount?: Maybe<SubscriptionCountEvent>;
 };
 
 
@@ -420,16 +390,6 @@ export type SubscriptionUsersSubscriptionArgs = {
 
 
 export type SubscriptionUsersSubscriptionCountArgs = {
-  filters?: Maybe<Scalars['EJSON']>;
-};
-
-
-export type SubscriptionuserTodosSubscriptionArgs = {
-  body?: Maybe<Scalars['EJSON']>;
-};
-
-
-export type SubscriptionuserTodosSubscriptionCountArgs = {
   filters?: Maybe<Scalars['EJSON']>;
 };
 
@@ -454,20 +414,28 @@ export enum SubscriptionEventType {
 export type Todo = {
   __typename?: 'Todo';
   _id?: Maybe<Scalars['ObjectId']>;
-  createdBy: User;
-  createdById: Scalars['ObjectId'];
+  /** Represents the date when this object was created */
+  createdAt: Scalars['Date'];
+  /** Represents the user who has created this object */
+  createdBy?: Maybe<User>;
+  /** Represents the user's id who has created this object */
+  createdById?: Maybe<Scalars['ObjectId']>;
   isDone: Scalars['Boolean'];
   title: Scalars['String'];
+  /** Represents the last time when the object was updated */
+  updatedAt: Scalars['Date'];
+  /** Represents the user who has made the latest update on this object */
+  updatedBy?: Maybe<User>;
+  /** Represents the user's id who has made the latest update on this object */
+  updatedById?: Maybe<Scalars['ObjectId']>;
 };
 
 export type TodoInsertInput = {
-  createdById: Scalars['ObjectId'];
   isDone: Scalars['Boolean'];
   title: Scalars['String'];
 };
 
 export type TodoUpdateInput = {
-  createdById?: Maybe<Scalars['ObjectId']>;
   isDone?: Maybe<Scalars['Boolean']>;
   title?: Maybe<Scalars['String']>;
 };
@@ -516,6 +484,20 @@ export enum UserRoles {
   ADMIN = 'ADMIN',
   USER = 'USER'
 }
+
+export type UserTodosCreateInput = {
+  title: Scalars['String'];
+};
+
+export type UserTodosDeleteInput = {
+  todoId: Scalars['ObjectId'];
+};
+
+export type UserTodosUpdateInput = {
+  todoId: Scalars['ObjectId'];
+  title?: Maybe<Scalars['String']>;
+  isDone?: Maybe<Scalars['Boolean']>;
+};
 
 export type UserUpdateInput = {
   isEnabled?: Maybe<Scalars['Boolean']>;
