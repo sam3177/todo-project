@@ -10,7 +10,7 @@ export default {
 		{
 			userTodosFindOne: [ X.ToNovaOne(TodosCollection) ],
 			userTodosFind: [
-				X.ToNova(TodosCollection, async (_, args, ctx) => {
+				X.ToNova(TodosCollection, async (_, __, ctx) => {
 					return { filters: { createdById: ctx.userId } };
 				}),
 			],

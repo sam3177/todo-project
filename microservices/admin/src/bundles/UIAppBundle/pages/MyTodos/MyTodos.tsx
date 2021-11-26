@@ -14,10 +14,6 @@ import { TodosAntTableSmart } from '@bundles/UIAppBundle/pages/TodosManagement/c
 import { PlusOutlined, FilterOutlined } from '@ant-design/icons';
 import * as Ant from 'antd';
 import { NewTodoInfoInput, Todo, User } from '@root/api.types';
-import {
-	TodosCollection,
-	UsersCollection,
-} from '@bundles/UIAppBundle/collections';
 import { useMutation, useQuery } from '@apollo/client';
 import { NEW_TODO } from '@bundles/UIAppBundle/mutations/NewTodo.mutation';
 import { UPDATE_TODO } from '@bundles/UIAppBundle/mutations/UpdateTodo.mutation';
@@ -32,10 +28,12 @@ export function MyTodos (){
 	const [ api, Provider ] = newSmart(TodosAntTableSmart);
 	const user = useGuardian().state.user;
 	const [ userId, setUserId ] = useState<string>();
-	const [ todos, setTodos ] = useState<Todo[]>([]);
+	const [ todos, setTodos ] = useState<Todo[]>();
 	const [ todoTitle, setTodoTitle ] = useState<string>();
 	const { loading: isLoading, error, data } = useQuery(
-		GET_USER_TODOS,
+		GET_USER_TODOS, {
+			fetchPolicy:"network-only"
+		}
 	);
 	const [ addTodo ] = useMutation(NEW_TODO);
 	const [ updateTodo ] = useMutation(UPDATE_TODO);
@@ -50,13 +48,14 @@ export function MyTodos (){
 	);
 	useEffect(
 		() => {
+			console.log('before if', data)
 			if (isLoading) return;
-			console.log(data);
+			console.log('after if', data)
+
 			setTodos(data.userTodosFind as Todo[]);
 		},
 		[ isLoading ],
 	);
-	console.log(todos);
 	const addNewTodo = async () => {
 		const todoObj: NewTodoInfoInput = {
 			title: todoTitle,
@@ -71,6 +70,7 @@ export function MyTodos (){
 			...oldTodos,
 			freshTodo.data.userTodosInsertOne,
 		]);
+		setTodoTitle('')
 	};
 	const checkTodo = async (id, oldVal) => {
 		await updateTodo({
@@ -110,13 +110,15 @@ export function MyTodos (){
 			</Ant.Col>
 		</Ant.Row>
 	);
-
+	console.log('data',data)
+console.log('todos',todos)
 	return (
 		<UIComponents.AdminLayout>
 			<Ant.PageHeader title='MyTodos'>
 				<Ant.Row>
 					<Ant.Col span={12}>
 						<Ant.Input
+						value={todoTitle}
 							size='large'
 							onChange={(e) => setTodoTitle(e.target.value)}
 							placeholder='add a new todo'

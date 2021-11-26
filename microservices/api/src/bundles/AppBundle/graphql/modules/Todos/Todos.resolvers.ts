@@ -12,7 +12,7 @@ export default {
 		{
 			TodosFindOne: [ X.ToNovaOne(TodosCollection) ],
 			TodosFind: [
-				X.ToNova(TodosCollection),
+				X.ToNova(TodosCollection)
 			],
 			TodosCount: [ X.ToCollectionCount(TodosCollection) ],
 		},
