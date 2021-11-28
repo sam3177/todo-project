@@ -9,23 +9,27 @@ button.delete-todo-btn {
 }
 button.delete-todo-btn {
 	color: red;
+	margin-right:2px;
 }
 span.ant-checkbox-checked .ant-checkbox-inner {
 	background-color: rgb(29, 243, 29);
 	border-color: #d9d9d9;
 }
 input.edit-todo-input {
-	width: 70%;
+	width: 80%;
 	height: 31px;
 	font-weight: 500;
 	font-size: 1.2rem;
 	padding: 0 11px;
 	transform: translate(0, 2px);
+	margin-left:2px;
+	border-radius:5px;
 }
+
 h1.todo-title {
 	margin: 0;
 	height: 100%;
-	margin-left: 12px;
+	margin-left: 14px;
 	line-height: 35px;
 	font-size: 1.2rem;
 }
@@ -39,10 +43,19 @@ span.ant-checkbox-inner:after {
 	left: 33%;
 }
 div.ant-row.todo-container {
-	height: 35px;
+	min-height: 35px;
+	box-shadow: -2px 5px 3px rgba(0,0,0,.15);
+	margin:5px 0;
+	border-radius:5px;
 }
 ul.page-todos-list {
 	margin-left: 24px;
 	list-style-type: none;
 	padding:0;
+	width:70%;
+}
+div.ant-col-10.todo-actions{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
 }

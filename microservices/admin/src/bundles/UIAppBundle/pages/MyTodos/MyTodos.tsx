@@ -1,18 +1,12 @@
-import {
-	newSmart,
-	useUIComponents,
-	useTranslate,
-} from '@bluelibs/x-ui';
+import { useUIComponents, useTranslate } from '@bluelibs/x-ui';
 import { useEffect, useState } from 'react';
-import { TodosAntTableSmart } from '@bundles/UIAppBundle/pages/TodosManagement/components/List/TodosTableSmart';
-import { PlusOutlined, FilterOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import * as Ant from 'antd';
 import {
 	DragDropContext,
 	Droppable,
 	Draggable,
 } from 'react-beautiful-dnd';
-
 import {
 	Todo,
 	UserTodosCreateInput,
@@ -24,7 +18,6 @@ import { USER_TODOS_CREATE } from '@bundles/UIAppBundle/mutations/NewTodo.mutati
 import { USER_TODOS_UPDATE } from '@bundles/UIAppBundle/mutations/UpdateTodo.mutation';
 import { USER_TODOS_DELETE } from '@bundles/UIAppBundle/mutations/DeleteTodo.mutation';
 import { USER_TODOS_FIND } from '@bundles/UIAppBundle/queries/getUserTodos.query';
-
 import './styles.scss';
 import TodoComponent from './TodoComponent';
 export const MyTodos = () => {
@@ -85,6 +78,7 @@ export const MyTodos = () => {
 		);
 	};
 	const onDragEndHandler = (result) => {
+		if (!result.destination) return;
 		const items: Todo[] = [ ...todos ];
 		const [ reorderedItem ] = items.splice(result.source.index, 1);
 		items.splice(result.destination.index, 0, reorderedItem);

@@ -1,4 +1,4 @@
-import React, { RefObject, useRef, useState } from 'react';
+import React, { RefObject, useRef, useState, useEffect } from 'react';
 import { Row, Col, Checkbox, Button, Input } from 'antd';
 import {
 	DeleteOutlined,
@@ -16,16 +16,35 @@ const TodoComponent = ({ todo, updateTodo, deleteTodo }) => {
 		setTodoTitle(null);
 		setTimeout(() => input.current.focus(), 50);
 	};
+	const containerRef = useRef(null);
+	useEffect(
+		() => {
+			const handleClickOutside = (e) => {
+				if (
+					containerRef.current &&
+					!containerRef.current.contains(e.target) &&
+					showForm
+				) {
+					setShowForm(false);
+				}
+			};
+			document.addEventListener('mousedown', handleClickOutside);
+			return () => {
+				document.removeEventListener('mousedown', handleClickOutside);
+			};
+		},
+		[ containerRef, showForm ],
+	);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		updateTodo(todo._id, { title: todoTitle || todo.title });
 		toggleShowForm();
 	};
 	return (
-		<Row className='todo-container' key={todo._id}>
-			<Col span={12}>
+		<Row className='todo-container' key={todo._id} ref={containerRef}>
+			<Col span={14} lg={16} xl={18}>
 				{showForm ? (
-					<form onSubmit={handleSubmit}>
+					<form onSubmit={handleSubmit} className='edit-form'>
 						<Input
 							ref={input}
 							value={todoTitle === null ? todo.title : todoTitle}
@@ -42,20 +61,16 @@ const TodoComponent = ({ todo, updateTodo, deleteTodo }) => {
 					<h1 className='todo-title'>{todo.title}</h1>
 				)}
 			</Col>
-			<Col span={2}>
+			<Col span={10} lg={8} xl={6} className='todo-actions'>
 				<Button className='edit-todo-btn' onClick={toggleShowForm}>
 					{showForm ? <RollbackOutlined /> : <EditOutlined />}
 				</Button>
-			</Col>
-			<Col span={2}>
 				<Checkbox
 					className='todo-check'
 					checked={todo.isDone}
 					onChange={() =>
 						updateTodo(todo._id, { isDone: !todo.isDone })}
 				/>
-			</Col>
-			<Col span={2}>
 				<Button
 					className='delete-todo-btn'
 					onClick={() => deleteTodo(todo._id)}>
