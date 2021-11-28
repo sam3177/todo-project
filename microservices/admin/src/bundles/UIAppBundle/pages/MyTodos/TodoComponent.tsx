@@ -18,7 +18,7 @@ const TodoComponent = ({ todo, updateTodo, deleteTodo }) => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		updateTodo(todo._id, { title: todoTitle });
+		updateTodo(todo._id, { title: todoTitle || todo.title });
 		toggleShowForm();
 	};
 	return (

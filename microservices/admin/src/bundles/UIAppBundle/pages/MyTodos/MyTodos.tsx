@@ -8,6 +8,12 @@ import { TodosAntTableSmart } from '@bundles/UIAppBundle/pages/TodosManagement/c
 import { PlusOutlined, FilterOutlined } from '@ant-design/icons';
 import * as Ant from 'antd';
 import {
+	DragDropContext,
+	Droppable,
+	Draggable,
+} from 'react-beautiful-dnd';
+
+import {
 	Todo,
 	UserTodosCreateInput,
 	UserTodosDeleteInput,
@@ -78,6 +84,12 @@ export const MyTodos = () => {
 			oldTodos.filter((todo) => todo._id !== id),
 		);
 	};
+	const onDragEndHandler = (result) => {
+		const items: Todo[] = [ ...todos ];
+		const [ reorderedItem ] = items.splice(result.source.index, 1);
+		items.splice(result.destination.index, 0, reorderedItem);
+		setTodos(items);
+	};
 	return (
 		<UIComponents.AdminLayout>
 			<Ant.PageHeader title='MyTodos'>
@@ -102,17 +114,39 @@ export const MyTodos = () => {
 				</Ant.Row>
 			</Ant.PageHeader>
 			<Ant.Layout.Content>
-				<div className='page-todos-list'>
-					{todos &&
-						todos.map((todo) => (
-							<TodoComponent
-								key={todo._id}
-								todo={todo}
-								updateTodo={updateTodo}
-								deleteTodo={deleteTodo}
-							/>
-						))}
-				</div>
+				<DragDropContext onDragEnd={onDragEndHandler}>
+					<Droppable droppableId='page-todos-list'>
+						{(provided) => (
+							<ul
+								className='page-todos-list'
+								{...provided.droppableProps}
+								ref={provided.innerRef}>
+								{todos &&
+									todos.map((todo, i) => (
+										<Draggable
+											key={todo._id}
+											draggableId={todo._id}
+											index={i}>
+											{(provided) => (
+												<li
+													className='todo-item'
+													ref={provided.innerRef}
+													{...provided.draggableProps}
+													{...provided.dragHandleProps}>
+													<TodoComponent
+														todo={todo}
+														updateTodo={updateTodo}
+														deleteTodo={deleteTodo}
+													/>
+												</li>
+											)}
+										</Draggable>
+									))}
+								{provided.placeholder}
+							</ul>
+						)}
+					</Droppable>
+				</DragDropContext>
 			</Ant.Layout.Content>
 		</UIComponents.AdminLayout>
 	);

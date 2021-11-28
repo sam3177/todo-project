@@ -41,6 +41,8 @@ span.ant-checkbox-inner:after {
 div.ant-row.todo-container {
 	height: 35px;
 }
-div.page-todos-list {
+ul.page-todos-list {
 	margin-left: 24px;
+	list-style-type: none;
+	padding:0;
 }
